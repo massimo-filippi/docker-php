@@ -50,9 +50,9 @@ RUN pecl install \
 
 
 # Install Node & NPM
-# RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-#     && apt-get update && apt-get install -y --no-install-recommends \
-#         nodejs
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    nodejs
 
 
 # Install composer and make the correct dirs writable
