@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         g++ \
         libicu-dev \
         zlib1g-dev \
+        gnupg2 \
     && docker-php-ext-configure \
         intl \
     && docker-php-ext-install \
@@ -32,14 +33,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # Install GD2
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#         libfreetype6-dev \
-#         libjpeg62-turbo-dev \
-#         libpng12-dev \
-#     && docker-php-ext-configure \
-#         gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-#     && docker-php-ext-install \
-#         -j$(nproc) gd
+ RUN apt-get update && apt-get install -y --no-install-recommends \
+         libfreetype6-dev \
+         libjpeg62-turbo-dev \
+         libpng-dev \
+     && docker-php-ext-configure \
+         gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+     && docker-php-ext-install \
+         -j$(nproc) gd
 
 
 # Install XDebug
