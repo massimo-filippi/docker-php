@@ -1,3 +1,5 @@
+# Dummy comment
+
 
 FROM php:5.6-apache
 
