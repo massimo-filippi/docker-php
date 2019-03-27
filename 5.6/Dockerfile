@@ -14,13 +14,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libicu-dev \
         zlib1g-dev \
         gnupg2 \
+        libmcrypt-dev \
     && docker-php-ext-configure \
         intl \
     && docker-php-ext-install \
         intl \
         gettext \
         zip \
-        exif
+        exif \
+        mcrypt
 
 
 # Install MySQL
