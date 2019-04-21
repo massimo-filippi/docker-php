@@ -14,13 +14,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libicu-dev \
         zlib1g-dev \
         gnupg2 \
+        libmcrypt-dev \
     && docker-php-ext-configure \
         intl \
     && docker-php-ext-install \
         intl \
         gettext \
         zip \
-        exif
+        exif \
+        mcrypt
 
 
 # Install MySQL
@@ -51,7 +53,7 @@ RUN pecl install \
 
 
 # Install Node & NPM
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
     && apt-get update && apt-get install -y --no-install-recommends \
         nodejs
 
