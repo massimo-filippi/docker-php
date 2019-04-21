@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # Install MySQL
+###### MySQL already installed in parent Docker image
 # RUN apt-get update && apt-get install -y --no-install-recommends \
 #         mysql-client \
 #     && docker-php-ext-install \
@@ -41,6 +42,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # Install GD2
+###### GD already installed in parent Docker image
 # RUN apt-get update && apt-get install -y --no-install-recommends \
 #         libfreetype6-dev \
 #         libjpeg62-turbo-dev \
@@ -65,6 +67,7 @@ RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
 
 
 # Install composer and make the correct dirs writable
+###### Composer requires PHP 5.3.2+ to run
 # ENV PATH "/composer/vendor/bin:$PATH"
 # ENV COMPOSER_ALLOW_SUPERUSER 1
 # ENV COMPOSER_HOME /composer

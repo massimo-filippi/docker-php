@@ -9,10 +9,10 @@ RUN a2enmod rewrite
 # Install remaining stuff
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
-        zip \
+        zlib1g-dev \
         g++ \
         libicu-dev \
-        zlib1g-dev \
+        libzip-dev \
         gnupg2 \
 #       libmcrypt-dev \    - deprecated in PHP 7.2
     && docker-php-ext-configure \
