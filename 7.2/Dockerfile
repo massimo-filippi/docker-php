@@ -14,15 +14,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libicu-dev \
         zlib1g-dev \
         gnupg2 \
-        libmcrypt-dev \
+#       libmcrypt-dev \    - deprecated in PHP 7.2
     && docker-php-ext-configure \
         intl \
     && docker-php-ext-install \
         intl \
         gettext \
         zip \
-        exif \
-        mcrypt
+        exif
+#       mcrypt          - deprecated in PHP 7.2
 
 
 # Install MySQL
