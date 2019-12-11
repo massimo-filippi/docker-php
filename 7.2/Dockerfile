@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install MySQL
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        mysql-client \
+        default-mysql-client \
     && docker-php-ext-install \
         mysqli \
         pdo \
