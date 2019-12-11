@@ -57,6 +57,11 @@ RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
     && apt-get update && apt-get install -y --no-install-recommends \
         nodejs
 
+# Install Redis
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
+
 
 # Install composer and make the correct dirs writable
 ENV PATH "/composer/vendor/bin:$PATH"
