@@ -1,5 +1,5 @@
 
-FROM php:7.1-apache
+FROM php:7.4-apache
 
 
 # Enable Apache2 modules
@@ -9,20 +9,20 @@ RUN a2enmod rewrite
 # Install remaining stuff
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
-        zip \
+        zlib1g-dev \
         g++ \
         libicu-dev \
-        zlib1g-dev \
+        libzip-dev \
         gnupg2 \
-        libmcrypt-dev \
+#       libmcrypt-dev \    - deprecated in PHP 7.2
     && docker-php-ext-configure \
         intl \
     && docker-php-ext-install \
         intl \
         gettext \
         zip \
-        exif \
-        mcrypt
+        exif
+#       mcrypt          - deprecated in PHP 7.2
 
 
 # Install MySQL
@@ -40,7 +40,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libjpeg62-turbo-dev \
         libpng-dev \
     && docker-php-ext-configure \
-        gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+        gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
         -j$(nproc) gd
 

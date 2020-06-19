@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install MySQL
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        mysql-client \
+        default-mysql-client \
     && docker-php-ext-install \
         mysqli \
         pdo \
@@ -53,7 +53,7 @@ RUN pecl install \
 
 
 # Install Node & NPM
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get update && apt-get install -y --no-install-recommends \
         nodejs
 
