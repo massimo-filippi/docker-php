@@ -67,3 +67,4 @@ RUN curl -s -f -L -o /tmp/installer.php https://getcomposer.org/installer \
     && rm /tmp/installer.php \
     && mkdir -p /composer \
     && chmod -R 777 /composer
+
