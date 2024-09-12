@@ -24,7 +24,7 @@ jobs:
 
       # Build Docker image
       - name: Build Docker image
-        run: docker build -t massimofilippi/php:8.2
+        run: docker build -t massimofilippi/php:8.2 ./8.2
       # run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest .
 
       # Push Docker image do Docker Hubu
