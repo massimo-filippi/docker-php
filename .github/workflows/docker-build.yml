@@ -31,3 +31,15 @@ jobs:
       - name: Push Docker image
         run: docker push massimofilippi/php:8.2
       # run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest
+
+    # Slack notifikace o úspěšném buildu
+    - name: Notify Slack of successful build
+      if: success()
+      run: |
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"Docker image build and push succeeded!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    # Slack notifikace o neúspěšném buildu
+    - name: Notify Slack of failed build
+      if: failure()
+      run: |
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"Docker image build or push failed!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
