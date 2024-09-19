@@ -46,10 +46,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # Install XDebug
-RUN pecl install \
-        xdebug \
-    && docker-php-ext-enable \
-        xdebug
+RUN pecl install xdebug-3.1.5 \
+    && docker-php-ext-enable xdebug
 
 
 # Install Node & NPM
