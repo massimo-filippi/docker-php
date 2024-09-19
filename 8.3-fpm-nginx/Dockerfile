@@ -2,7 +2,7 @@
 FROM php:8.3-fpm
 
 
-# Install nginx 
+# Install nginx
 RUN apt-get update && apt-get install -y nginx
 
 
@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gettext \
         zip \
         exif
-        
+
 # Install Redis and enable it
 RUN pecl install redis  && docker-php-ext-enable redis
 
@@ -63,7 +63,7 @@ RUN pecl install \
 
 
 # Install Node & NPM
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get update && apt-get install -y --no-install-recommends \
         nodejs npm
 
@@ -77,12 +77,12 @@ RUN curl -s -f -L -o /tmp/installer.php https://getcomposer.org/installer \
     && rm /tmp/installer.php \
     && mkdir -p /composer \
     && chmod -R 777 /composer
-    
-    
+
+
 # Install Cachetool
 RUN curl -o /usr/bin/cachetool -sL https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar \
     && chmod +x /usr/bin/cachetool
-    
+
 WORKDIR /var/www/html
-    
+
 CMD php-fpm -D;nginx -g 'daemon off;'
