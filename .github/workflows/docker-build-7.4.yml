@@ -1,0 +1,38 @@
+name: Build and Push PHP 7.4
+
+on:
+  workflow_dispatch:      # Umožní manuální spuštění z GitHub UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Checkout repozitář
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Přihlášení do Docker Hubu
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      # Build and Push Docker image
+      - name: Build Docker image
+        run: docker build -t massimofilippi/php:7.4 ./7.4
+
+
+      # Slack notifikace o úspěšném buildu
+      - name: Notify Slack of build status
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Docker images build and push succeeded for PHP 7.4"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      # Slack notifikace o neúspěšném buildu
+      - name: Notify Slack of build failure
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Docker images build or push failed for PHP 7.4"}' ${{ secrets.SLACK_WEBHOOK_URL }}
