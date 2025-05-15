@@ -26,6 +26,8 @@ jobs:
             docker build -t massimofilippi/php:$version ./$version
             docker push massimofilippi/php:$version
           done
+          docker tag massimofilippi/php:8.4 massimofilippi/php:latest
+          docker push massimofilippi/php:latest
 
       - name: Notify Slack of build status
         if: success()
